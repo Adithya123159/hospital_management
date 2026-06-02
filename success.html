@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment Confirmed | MediBook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .success-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f4f8;
+        }
+        .success-card {
+            border-radius: 20px !important;
+            animation: slideUp 0.7s ease-out;
+            max-width: 500px;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .check-icon { font-size: 90px; color: #28a745; }
+        .safe-hands-badge {
+            background-color: #e7f1ff;
+            color: #0a58ca;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #0a58ca;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="success-container">
+    <div class="text-center p-3">
+        <div class="card shadow-lg border-0 p-5 success-card">
+            <div class="check-icon mb-4">✅</div>
+            <h1 class="display-6 fw-bold text-primary" id="titleMessage">Request Received!</h1>
+            <p class="lead mt-3 text-secondary" id="successMessage">Processing your request...</p>
+            
+            <div class="safe-hands-badge my-4">
+                <p class="mb-0" id="personalNote">
+                    "Rest assured, you are in safe hands."
+                </p>
+            </div>
+
+            <p class="text-muted small">Our medical team will contact you shortly to finalize your visit.</p>
+            
+            <div class="mt-4">
+                <a href="index.html" class="btn btn-primary px-5 py-2 rounded-pill fw-bold">Return to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+ 
+    const params = new URLSearchParams(window.location.search);
+    const userName = params.get('name');
+    
+    if (userName) {
+        const cleanName = decodeURIComponent(userName);
+        document.getElementById('titleMessage').innerText = `Thank You, ${cleanName}!`;
+        document.getElementById('successMessage').innerText = `Your appointment has been successfully requested.`;
+        document.getElementById('personalNote').innerText = 
+            `"Rest assured ${cleanName}, you are in safe hands. We are looking forward to seeing you."`;
+    }
+</script>
+</body>
+</html>
